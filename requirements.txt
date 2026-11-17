@@ -1,0 +1,2 @@
+ultralytics-opencv-headless==8.4.215
+Pillow>=9.1
