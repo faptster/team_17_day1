@@ -1,4 +1,4 @@
-"""Train the submitted Day 1 YOLO26s-cls classifier in two phases."""
+"""Train the submitted Day 1 YOLO26m-cls classifier in two phases."""
 import argparse
 import random
 import shutil
@@ -172,12 +172,12 @@ def train_classifier(fit, run_dir, device):
         flipud=0.0, hsv_h=0.0, hsv_s=0.0, hsv_v=0.0, auto_augment=None,
         erasing=0.0, project=str(run_dir), plots=False,
     )
-    model = YOLO("yolo26s-cls.pt")
+    model = YOLO("yolo26m-cls.pt")
     head_index = len(model.model.model) - 1
-    model.train(**common, epochs=5, freeze=head_index, lr0=0.0005, name="freeze_head")
+    model.train(**common, epochs=5, freeze=head_index, lr0=0.0005, name="yolo26m_freeze_head")
 
     model = YOLO(str(model.trainer.last))
-    model.train(**common, epochs=25, freeze=0, lr0=0.0001, name="unfreeze_all")
+    model.train(**common, epochs=25, freeze=0, lr0=0.0001, name="yolo26m_unfreeze_all")
     return Path(model.trainer.last)
 
 

@@ -1,6 +1,6 @@
 # TGR2026 Edge AI Track 2 · Day 1
 
-ระบบจำแนกภาพเมล็ดกาแฟหนึ่งคลาสต่อภาพด้วย YOLO26s-cls บน Raspberry Pi 4 ด้วย CPU
+ระบบจำแนกภาพเมล็ดกาแฟหนึ่งคลาสต่อภาพด้วย YOLO26m-cls บน Raspberry Pi 4 ด้วย CPU
 
 ## ติดตั้งและทำนาย
 
@@ -25,7 +25,7 @@ python infer.py --input test/ --weights weights/ --out outputs/
 
 ## โมเดลและการเตรียมภาพ
 
-`weights/best.pt` คือ checkpoint YOLO26s-cls แบบ 7 คลาสจากขั้น fine-tune สุดท้าย ใช้ไฟล์นี้เพียงไฟล์เดียวในการทำนาย
+`weights/best.pt` คือ checkpoint YOLO26m-cls แบบ 7 คลาสจากขั้น fine-tune สุดท้าย ใช้ไฟล์นี้เพียงไฟล์เดียวในการทำนาย
 
 ระบบปรับทิศตาม EXIF แปลงภาพเป็น RGB ย่อภาพทั้งเฟรมแบบรักษาสัดส่วนด้วย bilinear แล้วเติมขอบสีเทา `(220, 220, 220)` ให้ครบ 320 × 320 พิกเซล จากนั้นใช้การแปลงข้อมูลมาตรฐานของ classifier คะแนนอันดับหนึ่งเป็นคลาสของภาพ โดยปิดการทำ test-time augmentation
 
@@ -38,4 +38,4 @@ python -m pip install scipy
 python train.py --data /path/to/day_1 --device 0 --out weights_retrained/
 ```
 
-`--device 0` ใช้ GPU สำหรับฝึก ส่วน `--device cpu` ใช้ CPU การฝึกเริ่มจาก `yolo26s-cls.pt` ของ Ultralytics ตรึง backbone 5 epochs ที่ learning rate 0.0005 จากนั้นปลดทุกชั้น 25 epochs ที่ learning rate 0.0001 แล้วบันทึก checkpoint สุดท้ายเป็น `best.pt` ในโฟลเดอร์ที่กำหนด
+`--device 0` ใช้ GPU สำหรับฝึก ส่วน `--device cpu` ใช้ CPU การฝึกเริ่มจาก `yolo26m-cls.pt` ของ Ultralytics ตรึง backbone 5 epochs ที่ learning rate 0.0005 จากนั้นปลดทุกชั้น 25 epochs ที่ learning rate 0.0001 แล้วบันทึก checkpoint สุดท้ายเป็น `best.pt` ในโฟลเดอร์ที่กำหนด
