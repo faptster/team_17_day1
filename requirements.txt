@@ -1,2 +1,4 @@
+torch==2.10.*
+torchvision==0.25.*
 ultralytics-opencv-headless==8.4.215
 Pillow>=9.1
