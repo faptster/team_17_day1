@@ -9,7 +9,7 @@
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-python -m pip install -r requirements.txt
+python -m pip install --no-cache-dir --timeout 120 --resume-retries 10 -r requirements.txt
 ```
 
 เมื่อวางภาพทดสอบใน `test/` ให้รันคำสั่งมาตรฐาน
